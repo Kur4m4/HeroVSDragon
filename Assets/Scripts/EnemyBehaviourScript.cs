@@ -41,14 +41,12 @@ public class EnemyBehaviourScript : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		EnemyMovements ();
-		print (tag);
-
-
 	}
 
 	void AnimationDragon () {
 
-		an.SetBool ("Transformado", true);
+		an.SetBool ("Transformado", tag == "Mestre" && vidas == 10);
+		an.SetBool ("Atingido", tag == "Inimigo");
 
 	}
 
@@ -73,15 +71,19 @@ public class EnemyBehaviourScript : MonoBehaviour {
 	}
 
 	void OnCollisionEnter2D(Collision2D c) {
+		
 		if (c.gameObject.tag == "Projetil") {
+			Flip();
 			vidas--;
-			if (tag == "Mestre" && vidas == 10) 
-				AnimationDragon ();
+			AnimationDragon ();
+
+				
 			if (vidas == 0)
 				
 				Destroy (gameObject);
 				Instantiate (explosaoPrefab, transform.position, transform.rotation);
-
+		} else if (c.gameObject.tag == "Hamburguer" ){
+				Flip();
 		}
 			
 	}

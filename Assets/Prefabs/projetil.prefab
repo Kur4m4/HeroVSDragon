@@ -89,8 +89,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89a0cf450fafb411e926081582ae8a18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  explosaoPrefab: {fileID: 1437797692536612, guid: ea6d677e31960437e8e573e5ba1fa095,
+    type: 2}
+  armaDirecao: {fileID: 1367913350336776, guid: a3e9efadf293c4ff7afed823393ffa25,
+    type: 2}
   velocidade: 5
-  tempoDeVida: 10
+  tempoDeVida: 3
+  direita: 0
 --- !u!212 &212688763743894916
 SpriteRenderer:
   m_ObjectHideFlags: 1

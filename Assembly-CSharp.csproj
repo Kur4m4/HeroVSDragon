@@ -56,8 +56,12 @@
      <Compile Include="Assets\Scripts\Enemy2BehaviourScript.cs" />
      <Compile Include="Assets\Scripts\EnemyBehaviourScript.cs" />
      <Compile Include="Assets\Scripts\ExplosaoBehaviourScript.cs" />
+     <Compile Include="Assets\Scripts\HamburguerBehaviourScript.cs" />
+     <Compile Include="Assets\Scripts\LimiteInferiorBehaviourScript.cs" />
      <Compile Include="Assets\Scripts\PlayerBehaviourScript.cs" />
+     <Compile Include="Assets\Scripts\PrincesaBehaviourScript.cs" />
      <Compile Include="Assets\Scripts\ProjetilHamburguerhaviourScript.cs" />
+     <Compile Include="Assets\Scripts\StartBehaviourScript.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>

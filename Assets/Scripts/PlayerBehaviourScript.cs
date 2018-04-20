@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerBehaviourScript : MonoBehaviour {
 
@@ -9,6 +10,7 @@ public class PlayerBehaviourScript : MonoBehaviour {
 	private Animator an;
 	public Transform verificaChao;
 	public Transform verificaParede;
+	public GameObject explosaoPrefab;
 
 	private bool estaAndando;
 	private bool estaNoChao;
@@ -16,6 +18,8 @@ public class PlayerBehaviourScript : MonoBehaviour {
 	private bool estaVivo;
 	public bool viradoParaDireita;
 	private bool atacandoBool;
+
+	public int vidas;
 
 	private float axis;
 	public float velocidade;
@@ -36,6 +40,9 @@ public class PlayerBehaviourScript : MonoBehaviour {
 		estaVivo = true;
 		viradoParaDireita = true;
 		atacandoBool = true;
+		vidas = 3;
+
+		
 		
 	}
 	
@@ -88,6 +95,24 @@ public class PlayerBehaviourScript : MonoBehaviour {
 		an.SetBool ("Andando", (estaNoChao && estaAndando));
 		an.SetBool ("Pulando", !estaNoChao);
 		an.SetFloat ("VelVertical", rb.velocity.y);
+		an.SetBool ("Morrendo", vidas == 0);
+	}
+
+	void OnCollisionEnter2D(Collision2D c) {
+		if (c.gameObject.tag == "Inimigo" || c.gameObject.tag == "Mestre") {
+			//StartCoroutine(Invencivel());
+			//transform.position = Vector3(0.0f, 0.0f, 0.0f);
+			Instantiate (explosaoPrefab, transform.position, transform.rotation);
+			transform.position = new Vector3(transform.position.x - 1f, transform.position.y + 1f, transform.position.z);
+			vidas--;
+			//GetComponent<Collider2D>().enabled = false;
+			if (vidas == 0 || c.gameObject.tag == "LimiteInferior") {
+				StartCoroutine(Finish());
+			}
+		}
+
+		if (c.gameObject.tag == "LimiteInferior")
+			StartCoroutine(Finish());
 
 	}
 
@@ -100,9 +125,33 @@ public class PlayerBehaviourScript : MonoBehaviour {
 	}
 
 	void Atacando() {
-		//an.SetBool ("Atacando", atacandoBool);
+		StartCoroutine(Atack());
 	}
 
+	IEnumerator Atack()
+	{
+			an.SetBool ("Atacando", true);
+			yield return new WaitForSecondsRealtime(0.2f);
+			an.SetBool ("Atacando", false);
+	}
+
+	IEnumerator Finish(){
+			yield return new WaitForSecondsRealtime(2);
+			SceneManager.LoadScene ("start");
+	}
+
+	IEnumerator Invencivel() {
+		for (int x = 0; x <= 3; x++) {
+			yield return new WaitForSeconds (1.0f);
+			if (GetComponent<SpriteRenderer>().enabled) {
+				GetComponent<SpriteRenderer>().enabled = false;
+			} else {
+				GetComponent<SpriteRenderer>().enabled = false;
+			}
+		}
+		GetComponent<SpriteRenderer>().enabled = true;
+		GetComponent<Collider2D>().enabled = true;
+	}
 
 }
 

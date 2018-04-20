@@ -11,6 +11,7 @@ TagManager:
   - Projetil
   - Arma
   - Mestre
+  - LimiteInferior
   layers:
   - Default
   - TransparentFX

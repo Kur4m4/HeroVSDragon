@@ -11,23 +11,15 @@ public class ArmaBehaviourScript : MonoBehaviour {
 		
 		if (Input.GetKeyDown ("f"))
 			//instancia na cena
-			Atirar();
+				StartCoroutine(Lancar());
 			
 	}
 
-	public void Atirar () {
-		Instantiate (projetilPrefab, transform.position, transform.rotation);
+	IEnumerator Lancar()
+	{
+			yield return new WaitForSecondsRealtime(0.1f);
+			Instantiate (projetilPrefab, transform.position, transform.rotation);
 	}
-		
-
-//	IEnumerator Start () {
-//		//aguarda para executar
-//		yield return new WaitForSeconds (intervalo);
-//		//instancia na cena
-//		Instantiate (projetilPrefab, transform.position, transform.rotation);
-//		//metodo chamado toda vez q for executado
-//		StartCoroutine(Start());
-//	}
 }
 
 
