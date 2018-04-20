@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyBehaviourScript : MonoBehaviour {
-
+	
+	public GameObject explosaoPrefab;
 	private Rigidbody2D rb;
 	private Transform tr;
 	private Animator an;
@@ -20,6 +21,8 @@ public class EnemyBehaviourScript : MonoBehaviour {
 
 	public LayerMask solido;
 
+	int vidas;
+
 
 
 	// Use this for initialization
@@ -29,11 +32,24 @@ public class EnemyBehaviourScript : MonoBehaviour {
 		an = GetComponent<Animator>();
 
 		viradoParaDireita = true;
+		if (tag == "Mestre")
+			vidas = 12;
+		else
+			vidas = 3;
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		EnemyMovements ();
+		print (tag);
+
+
+	}
+
+	void AnimationDragon () {
+
+		an.SetBool ("Transformado", true);
+
 	}
 
 	void EnemyMovements() {
@@ -55,6 +71,25 @@ public class EnemyBehaviourScript : MonoBehaviour {
 
 		velocidade *= -1;
 	}
+
+	void OnCollisionEnter2D(Collision2D c) {
+		if (c.gameObject.tag == "Projetil") {
+			vidas--;
+			if (tag == "Mestre" && vidas == 10) 
+				AnimationDragon ();
+			if (vidas == 0)
+				
+				Destroy (gameObject);
+				Instantiate (explosaoPrefab, transform.position, transform.rotation);
+
+		}
+			
+	}
+
+	IEnumerator UsingYield(int seconds)
+	{
+		yield return new WaitForSeconds(seconds);
+	} 
 
 	void OnDrawGizmosSelected() {
 

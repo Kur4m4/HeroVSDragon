@@ -23,8 +23,6 @@ public class ProjetilHamburguerhaviourScript : MonoBehaviour {
 	}
 
 	void OnCollisionEnter2D(Collision2D c) {
-		print ("colidiiu com" + c.gameObject.tag); 
-		if (c.gameObject.tag == "Inimigo")
 			Destroy (gameObject);
 	}
 }

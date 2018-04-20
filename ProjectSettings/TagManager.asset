@@ -10,6 +10,7 @@ TagManager:
   - Inimigo
   - Projetil
   - Arma
+  - Mestre
   layers:
   - Default
   - TransparentFX

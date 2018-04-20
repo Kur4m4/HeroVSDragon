@@ -55,6 +55,7 @@
      <Compile Include="Assets\Scripts\CameraBehaviourScript.cs" />
      <Compile Include="Assets\Scripts\Enemy2BehaviourScript.cs" />
      <Compile Include="Assets\Scripts\EnemyBehaviourScript.cs" />
+     <Compile Include="Assets\Scripts\ExplosaoBehaviourScript.cs" />
      <Compile Include="Assets\Scripts\PlayerBehaviourScript.cs" />
      <Compile Include="Assets\Scripts\ProjetilHamburguerhaviourScript.cs" />
  <Reference Include="UnityEngine.UI">
