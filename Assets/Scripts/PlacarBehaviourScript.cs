@@ -14,7 +14,6 @@ public class PlacarBehaviourScript : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		vidas = 3;
-		hamburguer = 3;
 	}
 	
 	// Update is called once per frame

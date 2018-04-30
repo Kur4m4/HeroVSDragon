@@ -18,15 +18,19 @@ public class ProjetilHamburguerhaviourScript : MonoBehaviour {
 		Destroy (gameObject, tempoDeVida);
 		//remove o efeito de gravidade do objeto
 		GetComponent<Rigidbody2D> ().constraints = RigidbodyConstraints2D.FreezeAll;
-		direita = armaDirecao.GetComponent<PlayerBehaviourScript>().viradoParaDireita;
-		print(direita);
+		//direita = armaDirecao.GetComponent<PlayerBehaviourScript>().viradoParaDireita;
+		//print(direita);
 		
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		//move o hamburguer
-		transform.Translate(Vector2.right * velocidade * Time.deltaTime);
+		if (PlayerBehaviourScript.viradoParaDireita) {
+			transform.Translate (Vector2.right * velocidade * Time.deltaTime);
+		} else {
+			transform.Translate (Vector2.left * velocidade * Time.deltaTime);
+		}
 	}
 
 	void OnCollisionEnter2D(Collision2D c) {

@@ -16,11 +16,11 @@ public class PlayerBehaviourScript : MonoBehaviour {
 	private bool estaNoChao;
 	private bool estaNaParede;
 	private bool estaVivo;
-	public bool viradoParaDireita;
+	public static bool viradoParaDireita;
 	private bool atacandoBool;
 
 	public int vidas;
-	public int hamburguers;
+	public int hamburguers1;
 
 	private float axis;
 	public float velocidade;
@@ -42,7 +42,7 @@ public class PlayerBehaviourScript : MonoBehaviour {
 		viradoParaDireita = true;
 		atacandoBool = true;
 		vidas = 3;
-		hamburguers = 3;
+		hamburguers1 = 0;
 	}
 	
 	// Update is called once per frame
@@ -113,7 +113,9 @@ public class PlayerBehaviourScript : MonoBehaviour {
 		}
 
 		if (c.gameObject.tag == "Hamburguer") {
-			hamburguers += 3;
+			print("colidiu com heroi");
+			hamburguers1 += 3;
+			PlacarBehaviourScript.hamburguer = hamburguers1;
 		}
 
 		if (c.gameObject.tag == "LimiteInferior")
@@ -130,8 +132,8 @@ public class PlayerBehaviourScript : MonoBehaviour {
 	}
 
 	void Atacando() {
-		hamburguers =  hamburguers - 1;
-		PlacarBehaviourScript.hamburguer = hamburguers;
+		hamburguers1 -= 1;
+		PlacarBehaviourScript.hamburguer = hamburguers1;
 		StartCoroutine(Atack());
 	}
 
