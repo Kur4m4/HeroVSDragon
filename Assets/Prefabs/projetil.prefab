@@ -174,8 +174,8 @@ MonoBehaviour:
     type: 2}
   armaDirecao: {fileID: 1367913350336776, guid: a3e9efadf293c4ff7afed823393ffa25,
     type: 2}
-  velocidade: 5
-  tempoDeVida: 3
+  velocidade: 6
+  tempoDeVida: 2
   direita: 0
 --- !u!212 &212688763743894916
 SpriteRenderer:
